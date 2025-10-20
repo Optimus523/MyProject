@@ -17,7 +17,7 @@ int main(void)
     }
 
     
-    if (base_value > 150000)
+   else if (base_value > 150000)
     {
         discount_rate = 0.15;
     }
