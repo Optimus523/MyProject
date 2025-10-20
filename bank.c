@@ -3,13 +3,13 @@
 
 int main(void)
 {
-    // declaration of a variable that stores the base price
+    float discount, price_after_discount, tax_amount, final_cost,discount_rate;
+    printf("A SIMPLE E-COMMERCE SYSTEM\n");
 
     float base_value;
     printf("Enter base price of item (UGX): ");
     scanf("%f", &base_value);
 
-    // Ensuring user does not enter a negative price 
     if (base_value < 0 || base_value == 0)
     {
         printf("Error: The item price must be greater than zero\n");
@@ -17,72 +17,36 @@ int main(void)
     }
 
     
-    else if (base_value > 0 && base_value <= 50000)
+    if (base_value > 150000)
     {
-        // calculating the final cost given no discount
-
-        float normal_price = base_value;
-        float price_after_discount = base_value - 0.00;
-        float tax_amount = TAX_RATE * price_after_discount;
-        float final_cost = price_after_discount + tax_amount;
-        float discount_applied = 0.00 * base_value;
-
-        // Display of a check like structure of the transaction for no discount
-
-        printf("\tE-COMMERCE RECIEPT\n");
-        printf("==================================================================\n");
-        printf("Base Price:                 %.2f (UGX)\n",base_value);
-        printf("Discount Applied (0%%):    %.2f (UGX)\n", discount_applied);
-        printf("Price After Discount:       %.2f (UGX)\n", price_after_discount);
-        printf("Tax (18%%):                 %.2f (UGX)\n", tax_amount);
-        printf("==================================================================\n");
-        printf("FINAL TOTAL COST:           %.2f (UGX)\n", final_cost);
+        discount_rate = 0.15;
     }
     else if (base_value > 50000 && base_value <= 150000)
     {
-        // calculating the final cost given standard discount
-
-        float standard_discount = base_value * 0.10;
-        float price_after_discount = base_value - standard_discount;
-        float tax_amount = TAX_RATE * price_after_discount;
-        float final_cost = price_after_discount + tax_amount;
-        float discount_applied = 0.10 * base_value;
-
-        // Display of a check like structure of the transaction for standard_discount
-
-        printf("\tE-COMMERCE RECIEPT\n");
-        printf("==================================================================\n");
-        printf("Base Price:                 %.2f (UGX)\n",base_value);
-        printf("Discount Applied (10%%):    %.2f (UGX)\n", discount_applied);
-        printf("Price After Discount:       %.2f (UGX)\n", price_after_discount);
-        printf("Tax (18%%):                 %.2f (UGX)\n", tax_amount);
-        printf("==================================================================\n");
-        printf("FINAL TOTAL COST:           %.2f (UGX)\n", final_cost);
+       
+        discount_rate = 0.10;
     }
-    else if (base_value >= 150000)
+    else
 
     {
-        // calculating the final cost given premium discount
-
-        float premium_discount = base_value * 0.15;
-        float price_after_discount = base_value - premium_discount;
-        float tax_amount = TAX_RATE * price_after_discount;
-        float final_cost = price_after_discount + tax_amount;
-        float discount_applied = 0.15 * base_value;
-
-        // Display of a check like structure of the transaction for premium_discount
-
-        printf("\tE-COMMERCE RECIEPT\n");
-        printf("==================================================================\n");
-        printf("Base Price:                 %.2f (UGX)\n",base_value);
-        printf("Discount Applied (15%%):    %.2f (UGX)\n", discount_applied);
-        printf("Price After Discount:       %.2f (UGX)\n", price_after_discount);
-        printf("Tax (18%%):                 %.2f (UGX)\n", tax_amount);
-        printf("==================================================================\n");
-        printf("FINAL TOTAL COST:           %.2f (UGX)\n", final_cost);
-
+       
+        discount_rate = 0.00;
 
     }
+    discount = base_value * discount_rate;
+    price_after_discount = base_value - discount;
+    tax_amount = price_after_discount * TAX_RATE;
+    final_cost = price_after_discount + tax_amount;
+    
+
+    printf("\tE-COMMERCE RECIEPT\n");
+    printf("==================================================================\n");
+    printf("Base Price:                      %.2f   (UGX)\n",base_value);
+    printf("Discount Applied(%.0f%%) :         -%.2f    (UGX)\n",discount_rate*100, discount);
+    printf("Price After Discount:            %.2f   (UGX)\n", price_after_discount);
+    printf("Tax (18%%):                      +%.2f    (UGX)\n", tax_amount);
+    printf("==================================================================\n");
+    printf("FINAL TOTAL COST:           %.2f (UGX)\n", final_cost);
 
     return 0;
         
